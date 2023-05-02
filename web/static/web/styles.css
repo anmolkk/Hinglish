@@ -1,0 +1,58 @@
+body{
+    background-color: rgb(125, 216, 216);
+    text-align: center;
+    
+}
+#nav {
+    list-style-type: none;
+    margin: 1px;
+    padding: 10px;
+    overflow: hidden;
+    background-color: rgb(17, 143, 143);
+    border-radius: 4px;
+  }
+  
+.menu {
+    float: left;
+    border-right: 1px solid black;
+    width: 70px;
+    padding: 1px;
+    margin: 100px;
+  }
+  
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+ li a:hover{
+    background-color: rgb(10, 86, 86);
+  }
+
+ li .active {
+    background-color: #7d817cb0;
+  }
+
+  li:last-child {
+    border-right: none;
+  }
+
+form{
+    font-size: 25px;    
+}
+input{
+  size: 25px;
+}
+#note{
+    text-align: left;
+    margin: 10px;
+} 
+
+
+footer{
+    text-align: left;
+    margin: 10px;
+}

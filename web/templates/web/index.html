@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'web/styles.css' %}" rel="stylesheet">
+    <title>Hinglish Dictionary</title>
+    <style>
+         li a:hover {
+    background-color: rgb(10, 86, 86);
+  }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul id="nav">
+                <li class="menu"><a href="">Home</a></li>
+                <li class="menu"><a href="/english/">English</a></li>
+                <li class="menu" id="about"><a href="/about/">About</a></li>
+
+            </ul>
+        </nav>
+    </header>
+    <h1 id="heading">Hinglish Dictionary</h1>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <br>
+            <input id="button" type="submit" value="Search">
+        </form>
+
+    </div>
+
+    {% if result != none %}
+        {% if list %}
+            {% for item in result %}
+                <h1 id="result">{{ item }}</h1>
+            {% endfor %}
+        {% endif %}
+        {% if not list %}
+            <h1 id="result">{{ result }}</h1>
+        {% endif %}
+    {% endif %}
+
+    <br>
+    <p id="note"><b>Note:</b> Enter Hinglish word to search particular English word</p>
+
+    <footer>
+        &copy;<small>Anmol</small>
+    </footer>
+</body>
+</html>

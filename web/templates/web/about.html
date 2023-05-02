@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'web/styles.css' %}" rel="stylesheet">
+    <title>About - Hinglish Dictionary</title>
+    <style>
+        #about-para{
+            font-size: 22px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            margin: 10px;
+            margin-top: 80px;
+            padding: 5px;
+        }
+        #border-about{
+            margin: 5px;
+            border: black 2px solid;
+            border-radius: 10px;
+            height: 100%;
+        }
+        li a:hover {
+            background-color: rgb(10, 86, 86);
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul id="nav">
+                <li class="menu"><a href="/">Home</a></li>
+                <li class="menu"><a href="/english/">English</a></li>
+                <li class="menu" id="about"><a href="">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="border-about">
+    <h1 id="heading"><u>ABOUT</u></h1><br>
+    <p id="about-para">
+        This is a Website for Hinglish Dictionary. You Have to Enter Any Hinglish word in the Search box the Get appropriate English word for that Hinglish Word.
+        This Website is made as a Project by <strong>Anmol</strong>. 
+    </p>
+    </div>
+</body>    
+</html>
