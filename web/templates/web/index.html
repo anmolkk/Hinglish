@@ -7,11 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static 'web/styles.css' %}" rel="stylesheet">
+    <meta content="This is ">
     <title>Hinglish Dictionary</title>
     <style>
          li a:hover {
     background-color: rgb(10, 86, 86);
   }
+  
     </style>
 </head>
 <body>
@@ -31,7 +33,7 @@
             {% csrf_token %}
             {{ form }}
             <br>
-            <input id="button" type="submit" value="Search">
+            <button id="button" type="submit" >Search</button>
         </form>
 
     </div>

@@ -1,12 +1,11 @@
 body{
     background-color: rgb(125, 216, 216);
     text-align: center;
-    
 }
 #nav {
     list-style-type: none;
     margin: 1px;
-    padding: 10px;
+    padding: 1px;
     overflow: hidden;
     background-color: rgb(17, 143, 143);
     border-radius: 4px;
@@ -15,9 +14,12 @@ body{
 .menu {
     float: left;
     border-right: 1px solid black;
+    margin-right: 3px;
     width: 70px;
-    padding: 1px;
-    margin: 100px;
+    padding: 2px;
+    margin: 5px;
+    padding-right: 10px;
+    border-radius: 5px;
   }
   
 li a {
@@ -40,16 +42,40 @@ li a {
     border-right: none;
   }
 
-form{
-    font-size: 25px;    
+@media screen and (max-width: 768px) { 
+  .menu{
+    width: 100px;
+    font-size: 15px;
+    background-color: black;
+  }
+  
 }
-input{
-  size: 25px;
+
+  input{
+    font-size: 22px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 8px;
+    margin: 5px;
+    text-align: center;
+    padding: 4px;
+    background-color: lavender;
+  }
+
+label{
+  font-size: 22px;
 }
+
 #note{
     text-align: left;
     margin: 10px;
 } 
+
+button {
+  border-radius: 4px;
+  padding: 5px;
+  padding-inline: 10px;
+  background-color: lavender;
+}
 
 
 footer{

@@ -3,6 +3,13 @@ from django.http import request
 from django.shortcuts import render
 import json
 
+import pyttsx3
+ 
+
+# # converter.say("How Was Your Day?")
+# # converter.runAndWait()
+
+
 with open("web/static/web/data.json","r") as file:
     data = json.load(file)
 
@@ -11,7 +18,7 @@ eng = json.load(open("web/static/web/english.json"))
 search = None
 
 class getform(forms.Form):
-    word = forms.CharField(label="word")
+    word = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Word', 'style': 'width: 400px;','class': 'form-input'}), label="Word")
 
 def translateh(word):
     word = word.capitalize()
@@ -31,6 +38,7 @@ def index(request):
         if form.is_valid():
             word = form.cleaned_data["word"]
             search = translateh(word)
+            pyttsx3.speak(search)
 
             if type(search) == list:
                     return render(request, "web/index.html", {
@@ -72,6 +80,7 @@ def english(request):
         if form.is_valid():
             word = form.cleaned_data["word"]
             search = engtranslate(word)
+            pyttsx3.speak(search)
             if type(search) == list:
                     return render(request, "web/english.html", {
                     "form": getform(),
@@ -84,6 +93,7 @@ def english(request):
                     "form": getform(),
                     "result" : search
                 })
+
         else:
             return render(request, "web/english.html", {
                 "form": form
@@ -96,3 +106,5 @@ def english(request):
 
 def about(request):
     return render(request, "web/about.html")
+
+
