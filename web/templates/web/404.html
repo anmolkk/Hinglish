@@ -1,0 +1,29 @@
+{% extends "web/master.html" %}
+
+{% block head %}
+{% load static %}
+<title>Page Not Found</title>
+<link rel="icon" type="image/png" sizes="32*32" href="{% static 'web/favicon-32x32.png' %}">
+
+{% endblock %}
+
+
+{% block content %}
+
+<h1>Oops!</h1>
+<br>
+<h5>We are Unable the Access the page <i>"{{path}}"</i> that you have Requested. Please use the Navigation bar shown above to Access All the pages of the website.</h5>
+<div >
+    <center>
+<img src="{% static 'web/sad.png' %}" id="sad-imoji">
+</center>
+</div>
+<br>
+
+<style>
+#sad-imoji{
+	width:200px;
+	height:200px;
+
+}</style>
+{% endblock %}

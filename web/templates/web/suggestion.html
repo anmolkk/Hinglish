@@ -1,0 +1,28 @@
+{% extends "web/master.html" %}
+
+{% block head %}
+{% load static %}
+<title>Suggestion - Hinglish Dictionary</title>
+<link rel="icon" type="image/png" sizes="32*32" href="{% static 'web/favicon-32x32.png' %}">
+
+{% endblock %}
+
+
+{% block content %}
+
+<h1>Suggestion</h1>
+<p>You can Suggest New Words and Mistakes in Already Existing Word in Hinglish Dictionary.</p>
+<hr>
+<br>
+<form method="post">
+{% csrf_token %}
+
+{{suggest.as_p}}
+<button type="submit" id="submit-button">Submit</button>
+</form>
+
+
+<p id="note"><b>Note:</b> Suggest Any word that has not been Included in Hinglish Dictionary. Your Suggestion is Important. Your Suggested word will be Reviewed and may be added to the Dictionary. If you Observe any mistake in already added word or its Meaning, Please suggest the new meaning for that word. We will try to remove all the mistakes from the Dictionary.</p>
+
+
+{% endblock %}

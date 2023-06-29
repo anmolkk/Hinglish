@@ -9,51 +9,119 @@
     <link href="{% static 'web/styles.css' %}" rel="stylesheet">
     <meta content="This is ">
     <title>Hinglish Dictionary</title>
-    <style>
-         li a:hover {
-    background-color: rgb(10, 86, 86);
-  }
-  
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header>
         <nav>
+            <input type="checkbox" name="" id="check">
+            <label for="check" class="checkbtn">
+                <i class="fa fa-bars"></i>
+            </label>
             <ul id="nav">
-                <li class="menu"><a href="">Home</a></li>
+                <li id="img" class="menu"><img src="{% static 'web\favicon-32x32.png' %}" width="32" height="32"></li>
+                <li class="menu"><a href=""><span class="fa fa-home"></span> Home</a></li>
                 <li class="menu"><a href="/english/">English</a></li>
                 <li class="menu" id="about"><a href="/about/">About</a></li>
-
+                <li class="menu lastchild" id="suggest"><a href="/suggest/">Suggestion</a> </li>
+                <li class="menu lastchild"><a href="/feedback/">Feedback</a> </li>
             </ul>
         </nav>
     </header>
-    <h1 id="heading">Hinglish Dictionary</h1>
-    <div>
+    <main>
+    <h1 id="heading"><u>Hinglish Dictionary</u></h1>
+    <p>A Web based Dictionary to Look for the Word of Hinglish Language, that we Use on Social Media Platfrom to Speak with people's Informally.</p>
+    <p>Every Person have their Own Way of Writing Hinglish Word in Hinglish langugage. So, If you are Searching for any word and That word is not Appearing, Try Changing the Syntax of that Word and searching the New Word.</p>
+    <hr>
+    <br><br>
+    <div id="search">
         <form method="post">
+            {% for i in messages %}
+            <p style="color:red; font-size: 14px;"> {{i}}</p>
+            {% endfor %}
             {% csrf_token %}
+            <label for="word">Hinglish&nbsp;</label>
             {{ form }}
             <br>
-            <button id="button" type="submit" >Search</button>
+            <button id="submit-button" type="submit" >Search <span class="fa fa-paper-plane"></span></button>
         </form>
 
     </div>
 
-    {% if result != none %}
-        {% if list %}
-            {% for item in result %}
-                <h1 id="result">{{ item }}</h1>
-            {% endfor %}
+
+    {% if result != none or suggest != none %}
+        <div id="result-div">
+            <span class="fa fa-close" id="close"></span>
+        <h2><span class="fa fa-bookmark"></span> &nbsp;{{word.capitalize}}</h2>
+        <hr>
+        {% load util %}
+        {% if suggest %}
+            <h3>Did You Mean - </h3>
+
+            {% if suggest|check_tuple %}
+                {% for suggestion in suggest %}
+                    <ul>
+                    <li><h3 id="result">{{ suggestion }}</h3></li>
+                    </ul>
+                {% endfor %}
+            {% else %}
+                <ul>
+                <li><h3 id="result">{{ suggest }}</h3></li>
+                </ul>
+            {% endif %}
+
+        {% else %}
+            {% load util %}
+            {% if result|check_list %}
+                {% for item in result %}
+                    <ul>
+                    <li><h3 id="result">{{ item }}</h3></li>
+                    </ul>
+                {% endfor %}
+            {% else %}
+                <h3 id="result">{{ result }}</h3>
+            {% endif %}
         {% endif %}
-        {% if not list %}
-            <h1 id="result">{{ result }}</h1>
-        {% endif %}
+        </div>
+        
     {% endif %}
 
-    <br>
-    <p id="note"><b>Note:</b> Enter Hinglish word to search particular English word</p>
 
+    </main>
+    <br>
+    <div id="bottom">
+    <details style="text-align: left; margin:15px; position: relative; bottom: 0;">
+        <summary>How Hinglish Dictionary is Working?</summary>
+        <p>
+            In Hinglish Dictionary, When we Search for a Particular word, that word is send to the Backend. The Backend Scripting Language then Search for submitted word into the file. If the word is present then the server will send the Meaning of that Word with the Template.
+            If the Word is not found in file, the Server will send an error message with the Template. The Template will be Rendered on the Browser Window As a HTML Page.
+        </p>
+    </details>
+    <p id="note"><b>Note:</b> Enter Hinglish word to search particular English word</p>
     <footer>
-        &copy;<small>Anmol</small>
+
+        <div class="footer">
+            <ol class="socials">
+                <li><a href="https://www.facebook.com/anmol.kashaup/"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com/Anmolkashyap199"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://github.com/anmolkk/"><i class="fa fa-github"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/anmol-a081291b7/"><i class="fa fa-linkedin-square"></i></a></li>
+                <li><a href="https://www.instagram.com/instaboy_anmol/"><i class="fa fa-instagram"></i></a></li>
+            </ol>
+            <div class="footer-copyright">
+                <p><a href="https://www.privacypolicygenerator.info/live.php?token=a81kKCSNrUVx6WMyWswSt9uXrg9clf4x">Privacy Policy</a> | copyright <a class="anmol" href="https://www.linkedin.com/in/anmol-a081291b7">
+                    &copy;<small >Anmol</small></a></p>
+        </div>
+
+    
     </footer>
+</div>
+<script>
+          const btn = document.getElementById("close");
+const form = document.getElementById("result-div");
+btn.addEventListener('click',() => {
+  form.style.display = "None";    
+ })
+</script>
 </body>
 </html>

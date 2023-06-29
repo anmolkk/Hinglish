@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'web/styles.css' %}" rel="stylesheet">
+    <meta content="This is ">
+    {% block head %}   {% endblock %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <input type="checkbox" name="" id="check">
+            <label for="check" class="checkbtn">
+                <i class="fa fa-bars"></i>
+            </label>
+            <ul id="nav">
+                <li id="img" class="menu"><img src="{% static 'web\favicon-32x32.png' %}" width="32" height="32"></li>
+                <li class="menu"><a href="/" ><span class="fa fa-home"></span> Hinglish</a></li>
+                <li class="menu"><a href="/english/">English</a></li>
+                <li class="menu" id="about"><a href="/about/">About</a></li>
+                <li class="menu lastchild"><a href="/feedback/">Feedback</a> </li>
+            </ul>
+        </nav>
+    </header>
+   {% block content %}
+   {% endblock %}
+    <footer>
+        <div class="footer">
+            <ol class="socials">
+                <li><a href="https://www.facebook.com/anmol.kashaup/"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com/Anmolkashyap199"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://github.com/anmolkk/"><i class="fa fa-github"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/anmol-a081291b7/"><i class="fa fa-linkedin-square"></i></a></li>
+                <li><a href="https://www.instagram.com/instaboy_anmol/"><i class="fa fa-instagram"></i></a></li>
+            </ol>
+            <div class="footer-copyright">
+                <p><a href="https://www.privacypolicygenerator.info/live.php?token=a81kKCSNrUVx6WMyWswSt9uXrg9clf4x">Privacy Policy</a> | copyright <a class="anmol" href="https://www.linkedin.com/in/anmol-a081291b7">
+                    &copy;<small >Anmol</small></a></p>
+            </div>
+        </div>
+
+    
+    </footer>
+    </main>
+
+</body>
+</html>

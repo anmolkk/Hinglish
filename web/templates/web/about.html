@@ -1,55 +1,38 @@
+{% extends "web/master.html" %}
+
+
+{% block head %}
+
 {% load static %}
+<title>About - Hinglish Dictionary</title>
+<link rel="icon" type="image/png" sizes="32*32" href="{% static 'web/favicon-32x32.png' %}">
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{% static 'web/styles.css' %}" rel="stylesheet">
-    <title>About - Hinglish Dictionary</title>
-    <style>
-        #about-para{
-            font-size: 24px;
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            margin: 10px;
-            margin-top: 40px;
-            margin-bottom: 40px;
-            padding: 5px;
-            
-        }
-        #border-about{
-            margin: 15px;
-            border: black 3px solid;
-            border-radius: 15px;
-            height: 100%;
-        }
-        li a:hover {
-            background-color: rgb(10, 86, 86);
-        }
+{% endblock %}
 
-    </style>
-</head>
-<body>
-    <header>
-        <nav>
-            <ul id="nav">
-                <li class="menu"><a href="/">Home</a></li>
-                <li class="menu"><a href="/english/">English</a></li>
-                <li class="menu" id="about"><a href="">About</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div id="border-about">
-    <h1 id="heading"><u>ABOUT</u></h1><br>
-    <p id="about-para">
-        This is a Website for Hinglish Dictionary. You Have to Enter Any Hinglish word in the Search box to Get appropriate English word for that Hinglish Word.
-        It Also Include the English Dictionary. you can change between Dictionaries using Navigation Bar. <br>
-        This Website is made as a Project by <strong>Anmol</strong>. 
+
+{% block content %}
+
+<div id="border-about" style="overflow: hidden; position: relative;">
+    <h1 id="abt-heading" style="overflow: hidden;"><u> ABOUT</u></h1>
+    <p>This Page Provides Some Important Information about the Hinglish Dictionary Website.</p>
+    <hr>
+    <p align="justify" id="about-para">
+        This is a Website for Hinglish Dictionary, Based on the Hinglish Language that we use to speak with friends Over Social Media Platforms. You Have to Enter Any Hinglish word in the Search box to Get Appropriate English word for that Hinglish Word. After Getting the Result As a English Word, You can again search for the Meaning og the ENglish Word.
+        It Also Include the English Dictionary, In Which You can Search for the Meaning of any English Word that appear after searching for the Hinglish Word. You can change between Dictionaries using Navigation Bar. 
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;You Can Also share your Suggestion related to any word of Hinglish Language from the SUggestion page. Suggestion page is provided in the Navigation bar at the Hinglish Dictionary. Your Suggestion Matters to add new words and correct the Previous Added Words.You can Contact the Admin from any social Media Platfrom. They are provided at the bottom of each page.<br>
+        <br>
+        &nbsp;&nbsp;This Website is made by <strong><a href="https://www.linkedin.com/in/anmol-a081291b7" class="anmol">Anmol</a></strong>. 
     </p>
     </div>
-    <footer>
-        &copy;<small>Anmol</small>
-    </footer>
-</body>    
-</html>
+
+    <details style="text-align: left; margin:20px; position: relative; bottom: 6vh; display: flex;">
+        <summary>How Hinglish Dictionary is Working?</summary>
+        <p>
+            In Hinglish Dictionary, When we Search for a Particular word, that word is send to the Backend. The Backend Scripting Language then Search for submitted word into the file. If the word is present then the server will send the Meaning of that Word with the Template.
+            If the Word is not found in file, the Server will send an error message with the Template. The Template will be Rendered on the Browser Window As a HTML Page.
+        </p>
+    </details>
+    <br>
+
+{% endblock %}
