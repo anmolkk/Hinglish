@@ -8,4 +8,6 @@ urlpatterns = [
     path("suggest/",views.suggestion),
     path("feedback/",views.feedback),
     path("404",views.error_404),
+    # path("addword",views.AddHinglishWord),
+    # path("set<str:word>", views.setcookie,name="set")
 ]

@@ -1,38 +1,114 @@
-{% extends "web/master.html" %}
-
-
-{% block head %}
-
-{% load static %}
+{% extends "web/master.html" %} {% block head %} {% load static %}
 <title>About - Hinglish Dictionary</title>
-<link rel="icon" type="image/png" sizes="32*32" href="{% static 'web/favicon-32x32.png' %}">
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32*32"
+  href="{% static 'web/favicon-32x32.png' %}"
+/>
+<style>
+  .moduleinner {
+    max-width: 40%;
+    margin: 10px;
+    padding: 5px;
+    text-align: justify;
+  }
+  #innerabout {
+    width: 80vw;
+    margin: 10px;
+    margin-left: 10vw;
+  }
+  #abtmodules {
+    width: 90vw;
+    margin-left: 5vw;
+  }
+  .heading {
+    text-align: center;
+  }
+</style>
 
-{% endblock %}
+{% endblock %} {% block content %}
 
-
-{% block content %}
-
-<div id="border-about" style="overflow: hidden; position: relative;">
-    <h1 id="abt-heading" style="overflow: hidden;"><u> ABOUT</u></h1>
-    <p>This Page Provides Some Important Information about the Hinglish Dictionary Website.</p>
-    <hr>
-    <p align="justify" id="about-para">
-        This is a Website for Hinglish Dictionary, Based on the Hinglish Language that we use to speak with friends Over Social Media Platforms. You Have to Enter Any Hinglish word in the Search box to Get Appropriate English word for that Hinglish Word. After Getting the Result As a English Word, You can again search for the Meaning og the ENglish Word.
-        It Also Include the English Dictionary, In Which You can Search for the Meaning of any English Word that appear after searching for the Hinglish Word. You can change between Dictionaries using Navigation Bar. 
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;You Can Also share your Suggestion related to any word of Hinglish Language from the SUggestion page. Suggestion page is provided in the Navigation bar at the Hinglish Dictionary. Your Suggestion Matters to add new words and correct the Previous Added Words.You can Contact the Admin from any social Media Platfrom. They are provided at the bottom of each page.<br>
-        <br>
-        &nbsp;&nbsp;This Website is made by <strong><a href="https://www.linkedin.com/in/anmol-a081291b7" class="anmol">Anmol</a></strong>. 
+<div id="border-about" style="overflow: hidden; position: relative">
+  <h1 id="abt-heading" style="overflow: hidden"><u> ABOUT</u></h1>
+  <p>
+    This Page Provides Some Important Information about the Hinglish Dictionary
+    Website.
+  </p>
+  <hr />
+  <div id="innerabout">
+    <br />
+    <h2>About the Website</h2>
+    <p style="text-align: justify" id="about-para">
+      This is a Website for Hinglish Dictionary, Based on the Hinglish Language
+      that we use to speak with friends Over Social Media Platforms. You Have to
+      Enter Any Hinglish word in the Search box to Get Appropriate English word
+      for that Hinglish Word. After Getting the Result As a English Word, You
+      can again search for the Meaning og the ENglish Word. It Also Include the
+      English Dictionary, In Which You can Search for the Meaning of any English
+      Word that appear after searching for the Hinglish Word. You can change
+      between Dictionaries using Navigation Bar.
+      <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;You Can Also share your Suggestion related to any
+      word of Hinglish Language from the SUggestion page. Suggestion page is
+      provided in the Navigation bar at the Hinglish Dictionary. Your Suggestion
+      Matters to add new words and correct the Previous Added Words.You can
+      Contact the Admin from any social Media Platfrom. They are provided at the
+      bottom of each page.<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;Hinglish Dictionary Shows Few Suggestions if the word will not be present in the Dictinary. You can Simply click on the suggested word 
+      to get the Meaning of that word from Hinglish Dictionary. System will then generate the Meaning of that word for you.
+      <!-- <br />
+      &nbsp;&nbsp;This Website is made by
+      <strong
+        ><a href="https://www.linkedin.com/in/anmol-a081291b7" class="anmol"
+          >Anmol</a
+        ></strong
+      >. -->
     </p>
+  </div>
+  <hr />
+  <div id="abtmodules">
+    <h2>Modules</h2>
+    <div class="moduleinner" style="float: left">
+      <h3 class="heading">Hinglish Dictionary</h3>
+      <p>
+        In Hinglish Dictionary, You can Search for the Meaning of Any Hinglish
+        Word(Combination of Hindi and English Word). The Searched Word is
+        Converted into English Word. You can also Suggest New Words in Hingllish Dictionary, which May be Added to the Dictionary.
+        If the Word Will not be present, System will show few Suggestions, Which will match the word that you have Searched.
+      </p>
     </div>
+    <div class="moduleinner" style="float: right">
+      <h3 class="heading">English Dictionary</h3>
+      <p>
+        In English Dictionary, You can Search for the Meaning of English Words
+        From the Dictionary. A single word may be different Meaning in English
+        Dictionary. English Dictionary consist almost all the Words of English Language.
+      </p>
+    </div>
+  </div>
+</div>
+<br />
 
-    <details style="text-align: left; margin:20px; position: relative; bottom: 6vh; display: flex;">
-        <summary>How Hinglish Dictionary is Working?</summary>
-        <p>
-            In Hinglish Dictionary, When we Search for a Particular word, that word is send to the Backend. The Backend Scripting Language then Search for submitted word into the file. If the word is present then the server will send the Meaning of that Word with the Template.
-            If the Word is not found in file, the Server will send an error message with the Template. The Template will be Rendered on the Browser Window As a HTML Page.
-        </p>
-    </details>
-    <br>
+<details
+  style="
+    text-align: left;
+    margin: 20px;
+    position: relative;
+    bottom: 6vh;
+    display: flex;
+  "
+>
+  <summary>How Hinglish Dictionary is Working?</summary>
+  <p>
+    In Hinglish Dictionary, When we Search for a Particular word, that word is
+    send to the Backend. The Backend Scripting Language then Search for
+    submitted word into the file. If the word is present then the server will
+    send the Meaning of that Word with the Template. If the Word is not found in
+    file, the Server will send an error message with the Template. The Template
+    will be Rendered on the Browser Window As a HTML Page.
+  </p>
+</details>
+<br />
 
 {% endblock %}

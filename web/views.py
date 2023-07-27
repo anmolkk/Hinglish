@@ -1,12 +1,9 @@
-from django import forms
 from .forms import *
 from django.shortcuts import render, redirect
 import json
 from django.contrib import messages
-# import pyttsx3
-
-# import gtts  
-# from playsound import playsound  
+from .methods import *
+from django.http import HttpResponse
 
 
 with open("web/static/web/data.json","r") as file:
@@ -32,6 +29,7 @@ def find_matching_keys(dict, value):
     else:
         return None
 
+
 def translateh(word):
     word = word.capitalize()
     if word in data:
@@ -44,6 +42,7 @@ def translateh(word):
         return None
 
 def index(request):
+    recent = getrecentHinglish(request)
     if request.method == "POST":
         form = getform(request.POST)
         if form.is_valid():
@@ -52,25 +51,33 @@ def index(request):
             if search is None:
                 suggested = find_matching_keys(data, word)
                 messages.info(request, f"{word} is not Present in Hinglish Dictionary")   
-                return render(request, "web/index.html", {
+                html = render(request, "web/index.html", {
                     "form": getform(),
                     "result" : search,
                     "word":word,
                     "suggest":suggested,
-                })  
-
-            return render(request, "web/index.html", {
+                    "recent":recent
+                })
+                setrecentHinglish(request,html,word.capitalize())
+                return html
+            
+            html =  render(request, "web/index.html", {
                 "form": getform(),
                 "result" : search,
-                "word":word
+                "word":word,
+                "recent":recent
             })
+            setrecentHinglish(request,html,word.capitalize())
+            return html
         else:
             return render(request, "web/index.html", {
-                "form": form
+                "form": form,
+                "recent":recent
             })
     else:
         return render(request , "web/index.html",{
-            "form": getform()
+            "form": getform(),
+            "recent":recent,
         })
 
 
@@ -86,38 +93,48 @@ def engtranslate(word):
         return None
 
 def english(request):
+    recent = getrecentEnglish(request)
     if request.method == "POST":
         form = getform(request.POST)
         if form.is_valid():
             word = form.cleaned_data["word"]
             search = engtranslate(word)
             if search is None:
-                suggested = find_matching_keys(eng, word)
+                suggested = find_matching_keys(eng, word.capitalize())
                 messages.info(request, f"{word} is not Present in English Dictionary") 
-                return render(request, "web/index.html", {
+                html = render(request, "web/index.html", {
                     "form": getform(),
                     "result" : search,
                     "word":word,
                     "suggest":suggested,
-                })  
-            return render(request, "web/english.html", {
+                    "recent":recent
+                })
+                setrecentEnglish(request,html,word.capitalize())
+                return html
+            html = render(request, "web/english.html", {
                 "form": getform(),
                 "result" : search,
-                "word":word
+                "word":word,
+                "recent":recent
             })
+            setrecentEnglish(request,html,word)
+            return html
         
         else:
             return render(request, "web/english.html", {
-                "form": form
+                "form": form,
+                "recent":recent
             })
     else:
         return render(request , "web/english.html",{
-            "form": getform()
+            "form": getform(),
+            "recent":recent
         })
     
 
 def about(request):
     return render(request, "web/about.html")
+
 
 def error_404(request):
     path = request.path
@@ -137,6 +154,7 @@ def suggestion(request):
             "suggest":suggestform
         })
     
+
 def feedback(request):
     if request.method == "POST":
         name = request.POST["name"]
@@ -145,5 +163,27 @@ def feedback(request):
         message = request.POST["message"]
         feedback = Feedback(Name = name, Email = email, Subject = subject, Message = message)
         feedback.save()
+        subject = 'Thank you For Sharing Your feedback at Hinglish Dictionary'
+        message = f'Hi {name}, Thank you for Sharing You Valuable Feedback About Hinglish Dictionary with US. Please Stay Connect With US on Our Website. Hope You are Having a Great Time. You can Visit Our Website from Following Link. Hinglish Dictionary - https://hinglish.pythonanywhere.com'
+        sendmail(subject, message, email)
         return redirect("hinglish")
     return render(request, "web/feedback.html")
+
+
+# def AddHinglishWord(request):
+#     with open("web/static/web/exmp.json",'r') as file:
+#         ex = json.load(file)
+#     if request.method == "POST":
+#         form = suggest_form(request.POST)
+#         word = form["word"]
+#         meaning = form["meaning"]
+#         ex[word] = meaning
+#         with open("web/static/web/exmp.json", 'a') as js:
+#             js.write(ex)
+#             js.close()
+#         return redirect("hinglish")
+#     else:
+#         suggestform = suggest_form()
+#         return render(request, "web/suggestion.html", {
+#             "suggest":suggestform
+#         })

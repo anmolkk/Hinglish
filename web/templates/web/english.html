@@ -22,7 +22,7 @@
                 <li class="menu"><a href="/"><span class="fa fa-home"></span> Hinglish</a></li>
                 <li class="menu"><a href="/english/">English</a></li>
                 <li class="menu" id="about"><a href="/about/">About</a></li>
-                <li class="menu lastchild"><a href="/feedback/">Feedback</a> </li>
+                <li class="menu lastchild"><a href="/feedback/">Contact Us</a> </li>
             </ul>
         </nav>
     </header>
@@ -33,7 +33,7 @@
     <br>
     <br>
     <div id="search">
-        <form method="post">
+        <form method="post" id="myForm">
             {% for i in messages %}
             <p style="color:red; font-size: 14px;"> {{i}}</p>
             {% endfor %}
@@ -58,12 +58,12 @@
             {% if suggest|check_tuple %}
                 {% for suggestion in suggest %}
                     <ul>
-                    <li><h3 id="result">{{ suggestion }}</h3></li>
+                    <li onclick="searchsuggestion('{{suggestion}}')"><h3 id="result">{{ suggestion }}</h3></li>
                     </ul>
                 {% endfor %}
             {% else %}
                 <ul>
-                <li><h3 id="result">{{ suggest }}</h3></li>
+                <li onclick="searchsuggestion('{{suggest}}')"><h3 id="result">{{ suggest }}</h3></li>
                 </ul>
             {% endif %}
 
@@ -82,6 +82,21 @@
         </div>
         
     {% endif %}
+
+    {% if recent %}
+    <div id="result-div">
+        <h2><span class="fa fa-bookmark"></span> &nbsp;Recent Searches -</h2>
+    <hr>
+    
+
+
+    {% for item in recent %}
+        <ul>
+        <li onclick="searchsuggestion('{{item}}')"><h3 id="result" >{{ item }}</h3></li>
+        </ul>
+    {% endfor %}
+</div>
+    {% endif %}
 </main>
 <br>
     <details style="text-align: left; margin:15px; position: relative; bottom: 0;">
@@ -97,11 +112,11 @@
 
         <div class="footer" >
             <ol class="socials">
-                <li><a href="https://www.facebook.com/anmol.kashaup/"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="https://twitter.com/Anmolkashyap199"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="https://github.com/anmolkk/"><i class="fa fa-github"></i></a></li>
-                <li><a href="https://www.linkedin.com/in/anmol-a081291b7/"><i class="fa fa-linkedin-square"></i></a></li>
-                <li><a href="https://www.instagram.com/instaboy_anmol/"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="https://www.facebook.com/anmol.kashaup/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com/Anmolkashyap199" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://github.com/anmolkk/" target="_blank"><i class="fa fa-github"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/anmol-a081291b7/" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
+                <li><a href="https://www.instagram.com/instaboy_anmol/" target="_blank"><i class="fa fa-instagram"></i></a></li>
             </ol>
             <div class="footer-copyright">
                 <p><a href="https://www.privacypolicygenerator.info/live.php?token=a81kKCSNrUVx6WMyWswSt9uXrg9clf4x">Privacy Policy</a> | copyright <a class="anmol" href="https://www.linkedin.com/in/anmol-a081291b7">
@@ -115,6 +130,11 @@ const form = document.getElementById("result-div");
 btn.addEventListener('click',() => {
 form.style.display = "None";    
 })
+function searchsuggestion(word){
+    const input = document.getElementById("id_word");
+    input.setAttribute("value", word);
+    document.getElementById("myForm").submit();
+ }
 </script>
 </body>
 </html>
